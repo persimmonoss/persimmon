@@ -1,0 +1,57 @@
+{
+  "name": "persimmon-browser",
+  "version": "1.0.10.12",
+  "description": "Persimmon Browser - Fast, private, beautiful, and functional Chromium-based browser.",
+  "main": "electron-main.js",
+  "author": "Persimmon Foundation",
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"npm:react-start\" \"npm:electron-start\"",
+    "react-start": "cross-env BROWSER=none react-scripts start",
+    "electron-start": "cross-env NODE_ENV=development wait-on http://localhost:3000 && electron .",
+    "build": "react-scripts build",
+    "build-win": "react-scripts build && electron-builder --win",
+    "clean": "rimraf build dist"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "cross-env": "^7.0.3",
+    "electron": "^26.2.0",
+    "electron-builder": "^24.6.0",
+    "react-scripts": "5.0.1",
+    "wait-on": "^7.2.0",
+    "rimraf": "^5.0.0"
+  },
+  "build": {
+    "appId": "com.persimmon.browser",
+    "productName": "Persimmon Browser",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
